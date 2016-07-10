@@ -1,13 +1,28 @@
-<resources>
-  <string name="app_name">Stock Hawk</string>
+<resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
 
-  <string name="action_example">Example action</string>
+    <!-- Application name on startup icon -->
+    <string name="app_name">Stock Hawk</string>
+    <!-- Not used -->
+    <string name="action_example">Example action</string>
+    <!-- To call settings screen -->
+    <string name="action_settings">Settings</string>
+    <!-- Button hint, appears when you hold button -->
+    <string name="action_change_units">Change Units</string>
+    <!-- Button hint, appears when you hold floating "+" button -->
+    <string name="add_stock">Add a Stock</string>
+    <!-- Header for a stock search dialog -->
+    <string name="symbol_search">Symbol Search</string>
+    <!-- Details of stock search dialog -->
+    <string name="content_test">Search for a Stock Symbol</string>
+    <!-- Hint, appears in stock field when it's empty, says what to enter -->
+    <string name="input_hint">FB</string>
+    <!-- Prefill for stock field, currently empty -->
+    <string name="input_prefill"></string>
+    <!-- Error message, apppears in toast -->
+    <string name="network_toast">Uh-oh! This app requires an internet connection</string>
+    <string name="charts">Charts</string>
+    <string name="no_data_message">You have no stock data yet. To get them, connect to internet
+    and restart this app.</string>
+    <string name="widget_text">Stock Hawk</string>
 
-  <string name="action_settings">Settings</string>
-  <string name="action_change_units">Change Units</string>
-  <string name="symbol_search">Symbol Search</string>
-  <string name="content_test">Search for a Stock Symbol</string>
-  <string name="input_hint">FB</string>
-  <string name="input_prefill"></string>
-  <string name="network_toast">Uh-oh! This app requires an internet connection</string>
 </resources>
