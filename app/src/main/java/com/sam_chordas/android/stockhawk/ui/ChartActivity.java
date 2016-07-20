@@ -16,6 +16,7 @@ import com.sam_chordas.android.stockhawk.data.pojo.Quote;
 import com.sam_chordas.android.stockhawk.data.pojo.Reply;
 import com.sam_chordas.android.stockhawk.data.pojo.Results;
 import com.sam_chordas.android.stockhawk.rest.StockApi;
+import com.sam_chordas.android.stockhawk.rest.Utils;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class ChartActivity extends AppCompatActivity {
+    private static String LOG_TAG = Utils.class.getSimpleName();
 
     //parameters for reading historic stock data from site
     private static final String URL = "https://query.yahooapis.com";
@@ -52,28 +54,6 @@ public class ChartActivity extends AppCompatActivity {
 
         String stockName = getIntent().getStringExtra(STOCK_NAME);
         getSupportActionBar().setTitle(stockName.toUpperCase());
-
-
-//        new DownloadHistoryTask().execute(stockName);
-//        }
-//
-//        private class DownloadHistoryTask extends AsyncTask<String, Void, Bitmap> {
-//            /** The system calls this to perform work in a worker thread and
-//             * delivers it the parameters given to AsyncTask.execute() */
-//            protected Bitmap doInBackground(String... urls) {
-//                return loadImageFromNetwork(urls[0]);
-//            }
-//
-//            /** The system calls this to perform work in the UI thread and delivers
-//             * the result from doInBackground() */
-//            protected void onPostExecute(Bitmap result) {
-//                mImageView.setImageBitmap(result);
-//            }
-//        }
-//    }
-
-        //  txt_city = (TextView) findViewById(R.id.txt_city);
-
         drawHistoryGraph(stockName);
     }
 
@@ -86,8 +66,6 @@ public class ChartActivity extends AppCompatActivity {
 
         StockApi stockApi = retrofit.create(StockApi.class);
         Call<Reply> call = stockApi.getHistoryData(getQuery(stockName), FORMAT, ENV, CALLBACK);
-
-//        Log.d("Serg", "url call: " + call.request().url().toString());
         call.enqueue(new Callback<Reply>() {
 
             @Override
@@ -99,7 +77,7 @@ public class ChartActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Reply> call, Throwable t) {
-                Log.d("Serg", t.toString(), t);
+                Log.e(LOG_TAG, t.toString(), t);
             }
         });
     }
@@ -134,10 +112,8 @@ public class ChartActivity extends AppCompatActivity {
             points.addPoint(date, price.getValue());
         }
         chartView.addData(points);
-//        Log.d("Serg", ": " + points.size());
 
         setMinMaxStep(prices);
-
 
         chartView.setXLabels(AxisController.LabelPosition.NONE);
         chartView.setXLabels(AxisController.LabelPosition.OUTSIDE);
@@ -162,7 +138,7 @@ public class ChartActivity extends AppCompatActivity {
     private String getQuery(String stockName) {
         String start = getDate(TWO_MONTHS_AGO); //data for two months
         String end = getDate(1);//today
-        String symbol = stockName; //"YHOO";
+        String symbol = stockName;
         return "select * from yahoo.finance.historicaldata " +
                 "where symbol = \"" + symbol + "\" " +
                 "and startDate = \"" + start + "\" " +
@@ -181,7 +157,6 @@ public class ChartActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            // Respond to the action bar's Up/Home button
             case android.R.id.home:
                 this.finish();
                 return true;
@@ -207,11 +182,5 @@ public class ChartActivity extends AppCompatActivity {
         //to have space at top and bottom
         mMax = max2 + mStep;
         mMin = mMin - mStep;
-//
-//        Log.d("Serg", "min:" + mMin);
-//        Log.d("Serg", "max:" + mMax);
-//        Log.d("Serg", "delta:" + delta);
-//        Log.d("Serg", "step:" + mStep);
     }
-
 }

@@ -6,7 +6,6 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.sam_chordas.android.stockhawk.R;
@@ -22,19 +21,20 @@ public class WidgetProvider extends AppWidgetProvider {
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         for (int appWidgetId : appWidgetIds) {
 
-            RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget);
-
-            //add data to the remote view
-            views.setTextViewText(R.id.widget_header, "Serg!");
-
-            //on click open the app
-            Log.d("Serg", ": onUpdate() called");
+            //make intent for app to launch on click
             Intent launchIntent = new Intent(context, MyStocksActivity.class);
+            launchIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+            launchIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, launchIntent, 0);
-            views.setOnClickPendingIntent(R.id.widget_header, pendingIntent);
+
+            //get layout and attach listener to open app on click
+            RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget);
+            views.setOnClickPendingIntent(R.id.widget, pendingIntent);
 
             //source of stock data
-            views.setRemoteAdapter(R.id.stock_list, new Intent(context, WidgetService.class));
+            Intent serviceIntent = new Intent(context.getApplicationContext(), WidgetService.class);
+            serviceIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
+            views.setRemoteAdapter(R.id.stock_list, serviceIntent);
 
             //update widget
             appWidgetManager.updateAppWidget(appWidgetId, views);
@@ -44,13 +44,12 @@ public class WidgetProvider extends AppWidgetProvider {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Log.d("Serg", ": onReceive() !!!");
         if (StockIntentService.UPDATE_WIDGET.equals(intent.getAction())) {
             AppWidgetManager manager = AppWidgetManager.getInstance(context);
             int[] widgets = manager.getAppWidgetIds(new ComponentName(context, getClass()));
             manager.notifyAppWidgetViewDataChanged(widgets, R.id.stock_list);
-            super.onReceive(context, intent);
         }
+        super.onReceive(context, intent);
     }
 }
 

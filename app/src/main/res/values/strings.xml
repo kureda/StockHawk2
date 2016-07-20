@@ -1,5 +1,4 @@
 <resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
-
     <!-- Application name on startup icon -->
     <string name="app_name">Stock Hawk</string>
     <!-- Not used -->
@@ -23,6 +22,5 @@
     <string name="charts">Charts</string>
     <string name="no_data_message">You have no stock data yet. To get them, connect to internet
     and restart this app.</string>
-    <string name="widget_text">Stock Hawk</string>
-
+    <string name="widget_text">StockHawk</string>
 </resources>

@@ -116,13 +116,11 @@ public class StockTaskService extends GcmTaskService {
 
         if (urlStringBuilder != null) {
             urlString = urlStringBuilder.toString();
-    //        Log.d("Serg", urlString);
             try {
                 getResponse = fetchData(urlString);
                 result = GcmNetworkManager.RESULT_SUCCESS;
                 try {
                     ContentValues contentValues = new ContentValues();
-                    // update ISCURRENT to 0 (false) so new data is current
                     if (isUpdate) {
                         contentValues.put(QuoteColumns.ISCURRENT, 0);
                         mContext.getContentResolver().update(QuoteProvider.Quotes.CONTENT_URI, contentValues,

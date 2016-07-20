@@ -2,5 +2,6 @@
     android:initialLayout="@layout/widget"
     android:minHeight="@dimen/widget_default_height"
     android:minWidth="@dimen/widget_default_width"
+    android:resizeMode="none"
     android:updatePeriodMillis="0"
     android:previewImage="@drawable/widget_preview" />

@@ -44,18 +44,18 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
 
+    private static final int CURSOR_LOADER_ID = 0;
+    private static final String STOCK_NAME = "stock";
+    boolean isConnected;
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
     private Intent mServiceIntent;
     private ItemTouchHelper mItemTouchHelper;
-    private static final int CURSOR_LOADER_ID = 0;
-    private static final String STOCK_NAME = "stock";
     private QuoteCursorAdapter mCursorAdapter;
     private Context mContext;
     private Cursor mCursor;
-    boolean isConnected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +86,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
                 showEmptyView(true, recyclerView, emptyView);
             }
         }
-//Serg        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         getLoaderManager().initLoader(CURSOR_LOADER_ID, null, this);
 
@@ -181,8 +181,8 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
     }
 
     private void showEmptyView(boolean empty, RecyclerView recyclerView, TextView emptyView) {
-        recyclerView.setVisibility(empty?View.GONE:View.VISIBLE);
-        emptyView.setVisibility(empty?View.VISIBLE:View.GONE);
+        recyclerView.setVisibility(empty ? View.GONE : View.VISIBLE);
+        emptyView.setVisibility(empty ? View.VISIBLE : View.GONE);
     }
 
 

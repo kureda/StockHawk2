@@ -32,9 +32,9 @@ public class Utils {
                 if (count == 1) {
                     jsonObject = jsonObject.getJSONObject("results")
                             .getJSONObject("quote");
-                    if (jsonObject.isNull("name")) {//non-existing stock
+                    if (jsonObject.isNull("Name")) {//non-existing stock
                         String symbol = jsonObject.getString("symbol");
-                        Log.d("Serg", "whong stock symbol:" + symbol);
+                        Log.d(LOG_TAG, "wrong stock symbol:" + symbol);
                     } else {
                         batchOperations.add(buildBatchOperation(jsonObject));
                     }

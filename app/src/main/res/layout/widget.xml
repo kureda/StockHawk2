@@ -1,43 +1,31 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_collection"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/w">
+    android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/widget"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#bbDEDFDE"
+        android:background="@android:color/transparent"
         android:orientation="vertical">
-        <LinearLayout
-            android:id="@+id/widget"
+
+        <TextView
+            android:id="@+id/widget_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#aaDEDFDE"
-            android:orientation="horizontal"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp">
-            <ImageView
-                android:id="@+id/widget_img_launcher"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_gravity="center_vertical"
-                android:src="@mipmap/ic_launcher"/>
-            <TextView
-                android:id="@+id/widget_header"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/widget_text"
-                android:layout_gravity="center_vertical"
-                android:textColor="@android:color/black"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textStyle="bold"
-                android:padding="@dimen/activity_horizontal_margin"/>
-        </LinearLayout>
+            android:layout_gravity="center_vertical"
+            android:background="@color/material_blue_500"
+            android:padding="4dp"
+            android:text="@string/widget_text"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
         <ListView
             android:id="@+id/stock_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </ListView>
+            android:layout_height="match_parent"></ListView>
     </LinearLayout>
 
 </FrameLayout>
