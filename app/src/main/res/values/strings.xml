@@ -14,9 +14,9 @@
     <!-- Details of stock search dialog -->
     <string name="content_test">Search for a Stock Symbol</string>
     <!-- Hint, appears in stock field when it's empty, says what to enter -->
-    <string name="input_hint">FB</string>
+    <string name="input_hint" translatable="false">FB</string>
     <!-- Prefill for stock field, currently empty -->
-    <string name="input_prefill"></string>
+    <string name="input_prefill" translatable="false"></string>
     <!-- Error message, apppears in toast -->
     <string name="network_toast">Uh-oh! This app requires an internet connection</string>
     <string name="charts">Charts</string>
