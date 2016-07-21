@@ -23,4 +23,5 @@
     <string name="no_data_message">You have no stock data yet. To get them, connect to internet
     and restart this app.</string>
     <string name="widget_text">StockHawk</string>
+    <string name="STOCK_ALREADY_SAVED">This stock is already saved!</string>
 </resources>
